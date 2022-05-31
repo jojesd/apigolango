@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: .dockerfile
+    image: github.com/hyperyuri/webapi-db
+    container_name: APIGOLANG-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "25432:5432"
+    environment:
+      POSTGRES_DB: vhctracking
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+      PGDATA: /var/lib/postgresql/data/APIGOLANG
+    volumes:
+      - APIGOLANG:/var/lib/postgresql/data
+
+volumes:
+  APIGOLANG:
